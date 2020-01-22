@@ -21,9 +21,11 @@ export class UserList extends Component {
     render(){
         return(
             <div>
-                {this.state.users.map((user)=>{
-                <li>{user.name}</li>
-                })}
+                <ul>
+                    {this.state.users.map((user)=>{
+                        <li>{user.name}</li>
+                    })}
+                </ul>
             </div>
         );
     }
