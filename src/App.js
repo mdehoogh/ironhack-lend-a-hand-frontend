@@ -9,6 +9,7 @@ import Login from './pages/Login.jsx';
 import Profile from './pages/Profile.jsx';
 import Help from './pages/Help.jsx';
 import Request from './pages/Request.jsx';
+import Logout from './pages/Logout.jsx';
 
 import UnknownRoute from "./pages/UnknownRoute.jsx";
 
@@ -31,6 +32,7 @@ function App(){
           ? <>
               <Route exact path="/profile" component={Profile}/>
               <Route exact path="/request" component={Request}/>
+              <Route exact path="/logout" component={Logout}/>
             </>
           :
             <Route exact path="/login" component={Login}/>

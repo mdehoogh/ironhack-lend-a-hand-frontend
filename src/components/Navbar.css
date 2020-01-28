@@ -1,0 +1,29 @@
+.navbar{
+    position:relative;
+    height:2rem;
+}
+
+.navbar ul{
+    display:flex;
+    flex-direction: row;
+    position:absolute;
+    right:0px;
+    list-style-type: none;
+}
+
+.navbar ul li {
+    margin:10px;
+}
+
+/* hacky but it might work */
+.navbar button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional
+    font-family: arial, sans-serif;*/
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
