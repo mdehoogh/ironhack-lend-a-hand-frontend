@@ -31,8 +31,8 @@ export class Logout extends Component {
                     })
             .catch((err)=>{
                 // show the error
-                this.setState({error:err.response.data.error});
-                console.log("Logout out error response",err.response);
+                console.log("Log out error response",err);
+                this.setState({error:(!err||!err.message?"Unknown error leaving.":err.message)});
                 // replacing: alert("Failed to log out (error: "+err.response.data.error+")!");
             });
     }
@@ -42,7 +42,7 @@ export class Logout extends Component {
         if(this.state.loggedOut)return <Redirect to='/'/>;
         // a person can try again I suppose
         return(<DefaultLayout>
-                <p>Log out error: <span color='red'>{this.state.error}</span>.</p>
+                <p>Leaving error: <span color='red'>{this.state.error}</span>.</p>
             </DefaultLayout>);
     }
 }

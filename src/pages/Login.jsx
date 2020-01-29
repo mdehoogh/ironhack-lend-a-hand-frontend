@@ -90,8 +90,9 @@ export class Login extends Component{
         }
     }
 
+    // MDH@29JAN2020: redirect the user to its dashboard when successful!!!!
     render(){
-        if(this.state.loggedin)return <Redirect to='/profile'/>;
+        if(this.state.loggedin)return <Redirect to='/dashboard'/>;
         return(
             <div className='login'>
                 <div class="field">

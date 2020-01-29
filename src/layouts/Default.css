@@ -3,3 +3,9 @@
     display:flex;
     flex-direction:column;
 }
+
+.default-layout fieldset{
+    border:1px solid lightgrey;
+    margin-left:10px;
+    margin-right:10px;
+}
