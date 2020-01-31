@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Help.css';
 
-import DefaultLayout from '../layouts/Default.jsx';
+import DefaultLayout from '../layouts/DefaultLayout.jsx';
 
 const Help=()=>{
     return(<DefaultLayout className='help'>

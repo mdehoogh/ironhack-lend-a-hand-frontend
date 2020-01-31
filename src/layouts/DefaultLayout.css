@@ -5,7 +5,6 @@
 }
 
 .default-layout fieldset{
-    border:1px solid lightgrey;
-    margin-left:10px;
-    margin-right:10px;
+    border:1px solid silver;
+    margin:0px 8px 8px 6px;
 }

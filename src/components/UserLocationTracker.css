@@ -1,0 +1,42 @@
+.user-location-tracker{
+    display:flex;
+    flex-direction:column;
+}
+
+.user-location-info{
+    z-index:999;
+    position:relative;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap: nowrap;
+}
+
+.user-location-info .column{
+    display:flex;
+    flex-direction:column;
+}
+
+.user-location-info .text-line{
+    white-space: nowrap;
+}
+
+.user-location-info .location-frequency{
+    flex-grow:1;
+}
+.user-location-info .location{
+    flex-grow:1;
+}.user-location-info .location-visibility{
+    flex-grow:1;
+}
+
+/* fieldset stuff */
+
+/* .Select-menu-outer {
+    position:relative;
+    z-index: 999 !important;
+} */
+
+/* .user-location-tracker .right{
+    position:absolute;
+    right:0px;
+} */

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DefaultLayout from "../layouts/Default.jsx";
+import DefaultLayout from "../layouts/DefaultLayout.jsx";
 
 // MDH@27JAN2020: at the top level use a layout (that we can reuse over routes this way)
 

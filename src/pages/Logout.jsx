@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import DefaultLayout from '../layouts/Default.jsx';
+import DefaultLayout from '../layouts/DefaultLayout.jsx';
 
 import {logout} from '../utilities/auth.js';
 

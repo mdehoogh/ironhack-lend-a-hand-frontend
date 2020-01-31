@@ -6,17 +6,11 @@ import qs from 'qs';
 //                withCredentials:true NOT needed when stringifying what you send
 //                                     NEEDED when you send an object (jsonified along the way)
 // baseUrl uses "" when REACT_APP_API is NOT defined, in which case (as Jurgen told me it should use proxy instead!!!!)
-const transport=axios.create(
-                    {
-                        baseURL: process.env.REACT_APP_API||"",
-                        headers: {'content-type': 'application/x-www-form-urlencoded'},
-                    }
-                ); // withCredentials actually means with CORS (i.e. telling the browser to not prevent a cross-domain URL request)
 
 const signup=function(name,password){
     let user={'name':name,'password':password};
     console.log("Signing up",name);
-    return transport({
+    return axios({
         "method":"POST",
         "url":"auth/signup",
         "data":qs.stringify(user),
@@ -28,31 +22,36 @@ const signup=function(name,password){
 
 const login=function(name,password){
     let user={'name':name,'password':password};
-    return transport({
+    return axios({
         "method":"POST",
-        "url":"auth/login",
-        "data":qs.stringify(user),
-        // "headers":{
-        //     "content-type":"application/x-www-form-urlencoded"
-        // }
+        "url": "auth/login",
+        data: qs.stringify(user),
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+
     });
 };
 
 const logout=function(name){
     let user={name:name};
     console.log("Logging out",user);
-    return transport({
+    return axios({
         "method":"POST",
         "url":"auth/logout",
         "data":qs.stringify(user),
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
     });
 }
 
 const getprofile=function(member_id){
-    return transport({
+    return axios({
         "method":"GET",
         "url":"auth/profile",
-        "data":qs.stringify(member_id),
+        "data":qs.stringify({_id:member_id}),
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
     });
 };
 

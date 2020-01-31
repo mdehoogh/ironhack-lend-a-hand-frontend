@@ -41,7 +41,6 @@ export class UserLocationTracker extends Component{
         this.state={
             checked:(this.onLocationChange?true:false),
             count:0,
-            options:this.props,
             latitude:null,
             longitude:null,
             altitude:null,
@@ -60,10 +59,12 @@ export class UserLocationTracker extends Component{
     successCallback(geolocationPosition){
         console.log("Geolocation position",geolocationPosition);
         // passing both the geolocation position as well as the visibility setting up!!!
+        let newcount=this.state.count+1;
         if(this.state.checked)
-            this.onLocationChange(geolocationPosition,this.state.locationVisibilityOption.value);
+            this.onLocationChange(geolocationPosition,this.state.locationVisibilityOption.value,newcount);
+        // TODO are we going to wait for onLocationChange?????
         this.setState({
-            count:this.state.count+1,
+            count:newcount,
             latitude:geolocationPosition.coords.latitude,
             longitude:geolocationPosition.coords.longitude,
             altitude:geolocationPosition.coords.altitude,
@@ -122,45 +123,42 @@ export class UserLocationTracker extends Component{
     render(){
          return(<div className='user-location-tracker'>
                     {/* if we have an on change handler the user can still determine not to store locations */}
-                    {this.onLocationChange && <input type='checkbox' value='1' onChange={this.handleCheckboxChange} defaultChecked={this.state.checked}>Store</input>}
+                    {this.onLocationChange && <label><input type='checkbox' value='1' onChange={this.handleCheckboxChange} defaultChecked={this.state.checked}/>Store</label>}
                     {/* update frequency option */}
-                    <div className='column'>
-                        <p className='text-line'>Update frequency</p>
-                        <Select onChange={this.handleUpdateFrequencyChange} value={this.state.updateFrequencyOption} options={updateFrequencyOptions} />
-                        {/* <select placeholder='Frequency'>
-                            <option value='0'>As fast as possible</option>
-                            <option value='10'>Often</option>
-                            <option value='60'>Every minute</option>
-                            <option value='300'>Every 5 minutes</option>
-                        </select> */}
+                    <div className='user-location-info'>
+                        <fieldset className='location-frequency'><legend className='text-line'>Update frequency</legend>
+                            <div className='column'>
+                                <Select onChange={this.handleUpdateFrequencyChange} value={this.state.updateFrequencyOption} options={updateFrequencyOptions} />
+                                {/* <select placeholder='Frequency'>
+                                    <option value='0'>As fast as possible</option>
+                                    <option value='10'>Often</option>
+                                    <option value='60'>Every minute</option>
+                                    <option value='300'>Every 5 minutes</option>
+                                </select> */}
+                            </div>                    
+                        </fieldset>
+                        <fieldset className='location'><legend>Current location {this.props.locationSaveCount>0?(this.props.locationSaveCount===this.state.count?"(saved)":"(saved up to #"+this.props.locationSaveCount):"(not saved)"}</legend>
+                            {this.state.error
+                                ?<span>{this.state.error}</span>
+                                :<div className='column'>
+                                        <span className='text-line'>Update #{this.state.count}: {this.state.timestamp?this.state.timestamp.substr(-8):"?"}</span>
+                                        <span className='text-line'>Latitude : {(this.state.latitude?DMS(this.state.latitude):"?")+" N"}</span>
+                                        <span className='text-line'>Longitude: {(this.state.longitude?DMS(this.state.longitude):"?")+" W"}</span>
+                                </div>
+                            }
+                        </fieldset>
+                        <fieldset className='location-visibility'><legend>Visibility</legend>
+                            <div className='column right'>
+                                <Select onChange={this.handleLocationVisibilityChange} 
+                                        value={this.state.locationVisibilityOption} options={locationVisibilityOptions} />
+                                {/* <select placeholder='Visibility'>
+                                    <option value='none'>None</option>
+                                    <option value='friends'>Friends only</option>
+                                    <option value='all'>All</option>
+                                </select> */}
+                            </div>
+                        </fieldset>
                     </div>
-                    {this.state.error
-                        ?<span>{this.state.error}</span>
-                        :<div className='column'>
-                                <span className='text-line'>Update #{this.state.count}: {this.state.timestamp}</span>
-                                <span className='text-line'>Latitude : {DMS(this.state.latitude)+" N"}</span>
-                                <span className='text-line'>Longitude: {DMS(this.state.longitude)+" W"}</span>
-                        </div>
-                    }
-                    {/* 
-                    <p>Altitude : {this.state.altitude}</p>
-                    <p>Timestamp: {this.state.timestamp}</p>
-                    <p>Speed    : {this.state.speed}</p>
-                    <p>Heading  : {this.state.heading}</p>
-                    <p>Accuracy : {this.state.accurary}</p>
-                    <p>Alt accuracy: {this.state.altitude_accuracy}</p> 
-                    */}
-                    {/* <p>{this.state.options}</p> */}
-                <div className='column right'>
-                    <span>Visible to</span>
-                    <Select onChange={this.handleLocationVisibilityChange} 
-                            value={this.state.locationVisibilityOption} options={locationVisibilityOptions} />
-                    {/* <select placeholder='Visibility'>
-                        <option value='none'>None</option>
-                        <option value='friends'>Friends only</option>
-                        <option value='all'>All</option>
-                    </select> */}
-                </div>
             </div>);
     }
 }

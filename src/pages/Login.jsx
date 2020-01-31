@@ -6,6 +6,7 @@ import './Login.css';
 import {login,signup} from '../utilities/auth.js';
 
 import {Redirect} from 'react-router-dom';
+import LendAHandInfo from '../components/LendAHandInfo';
 
 export class Login extends Component{
 
@@ -67,6 +68,7 @@ export class Login extends Component{
         }else{
             login(this.state.name.trim(),this.state.password.trim())
                 .then((response)=>{
+                    debugger
                     if(response.status>=200&&response.status<300){
                         // response.data should contain the _id and name of the logged in user!!!
                         window.localStorage.user=JSON.stringify(response.data);
@@ -95,6 +97,7 @@ export class Login extends Component{
         if(this.state.loggedin)return <Redirect to='/dashboard'/>;
         return(
             <div className='login'>
+                <LendAHandInfo/>
                 <div class="field">
                     <label class="label">Member name</label>
                     <div class="control has-icons-left has-icons-right">
