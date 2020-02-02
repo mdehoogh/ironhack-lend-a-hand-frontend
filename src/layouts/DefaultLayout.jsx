@@ -6,6 +6,7 @@ import UserLocationTracker from "../components/UserLocationTracker";
 
 // replacing the Hook component: import GPSLocation from '../components/GPSLocation';
 
+// MDH@02FEB2020: we can still show the location but not allow saving it (unless their a registered user!!!)
 import './DefaultLayout.css';
 
 const DefaultLayout=(props)=>{
@@ -14,8 +15,7 @@ const DefaultLayout=(props)=>{
         <div className='default-layout'>
             <fieldset><legend>Info</legend><LendAHandInfo/></fieldset>
             <Navbar/>
-            {window.localStorage.user
-                ?<fieldset><legend>Your location</legend><UserLocationTracker onLocationChange={props.onLocationChange} locationSaveCount={props.locationSaveCount}/></fieldset>:<></>}
+            <fieldset><legend> Your location </legend><UserLocationTracker onLocationChange={props.onLocationChange} locationSaveCount={props.locationSaveCount}/></fieldset>
             <div>
                 {props.children}
             </div>

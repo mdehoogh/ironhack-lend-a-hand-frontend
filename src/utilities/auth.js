@@ -47,7 +47,7 @@ const logout=function(name){
 const getprofile=function(member_id){
     return axios({
         "method":"GET",
-        "url":"auth/profile",
+        "url":"profile",
         "data":qs.stringify({_id:member_id}),
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
