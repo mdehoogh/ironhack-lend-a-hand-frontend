@@ -8,14 +8,12 @@ import "./App.css";
 import ChatRoomPage from "./ChatRoomPage";
 const history = createHistory();
 function App() {
-  return (
-    <div className="App">
+  return(<div className="App">
       <Router history={history}>
         <ChatTopBar />
         <Route path="/" exact component={ChatHomePage} />
-        <Route path="/chatroom" exact component={ChatRoomPage} />
+        <Route path="/chatroom" exact render={()=><ChatRoomPage chatRoom={JSON.parse(window.localStorage.chatData).chatRoomName} chatRoomUser={JSON.parse(window.localStorage.chatData).handle}/>}/>
       </Router>
-    </div>
-  );
+    </div>);
 }
 export default App;
