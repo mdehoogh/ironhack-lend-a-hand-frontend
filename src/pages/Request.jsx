@@ -9,7 +9,7 @@ export class Request extends Component{
         super(props);
         let parameters=qs.parse(this.props.location.search);
         this.state={
-            member_id:window.localStorage.user.id,
+            member_id:window.sessionStorage.user.id,
             to:parameters.to,
             what:parameters.what,
             what_type:parameters.what_type,

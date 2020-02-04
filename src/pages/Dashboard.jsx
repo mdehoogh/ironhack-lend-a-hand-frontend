@@ -18,8 +18,9 @@ export class Dashboard extends Component{
     constructor(props){
         super(props);
         this.onLocationChange=this.onLocationChange.bind(this);
+        // MDH@03FEB2020: easiest to set the visibility to all so that we get to see the lend-a-handers nearby immediately
         this.state={
-            location_visibility:"none",
+            location_visibility:"all",
             locationSaveCount:0,
         }
     }

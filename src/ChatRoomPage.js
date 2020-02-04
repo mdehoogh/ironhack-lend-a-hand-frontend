@@ -22,7 +22,7 @@ const socket = io(SOCKET_IO_URL);
 
 // access to the chat definition (the 'handle' and the chat room)
 // const getChatData = () => {
-//   return JSON.parse(localStorage.getItem("chatData"));
+//   return JSON.parse(sessionStorage.getItem("chatData"));
 // };
 
 // dealing with asynchronic stuff (e.g. when receiving a newMessage telling us that a new message was posted!)
@@ -81,7 +81,7 @@ class ChatRoomPage extends Component {
     constructor(props){
         super(props);
         // console.log("Chat room props",this.props);
-        // instead of using hooks or the global localStorage.chatData we assume to receive chatroom and 'handle'
+        // instead of using hooks or the global sessionStorage.chatData we assume to receive chatroom and 'handle'
         this.updateMessages=this.updateMessages.bind(this);
         this.onChatRoomConnect=this.onChatRoomConnect.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);

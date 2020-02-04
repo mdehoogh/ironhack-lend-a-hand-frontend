@@ -10,9 +10,9 @@ export class Profile extends Component{
     }
 
     componentDidMount(){
-        // get the member's id from localStorage.user!!!!
-        if(window.localStorage.user){
-            getprofile(window.localStorage.user._id)
+        // get the member's id from sessionStorage.user!!!!
+        if(window.sessionStorage.user){
+            getprofile(window.sessionStorage.user._id)
             .then((profile)=>{this.setState({profile:profile,error:null});})
             .catch((error)=>{this.setState({profile:null,error:JSON.stringify(error)});});
         }else

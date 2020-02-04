@@ -9,14 +9,14 @@ import {Redirect} from 'react-router-dom';
 export class Logout extends Component {
 
     state={
-        loggedOut:(window.localStorage.user?false:true),
+        loggedOut:(window.sessionStorage.user?false:true),
         error:"",
     }
 
     componentDidMount(){
         // force a logout
         if(this.state.loggedOut)return alert("Already logged out!");
-        let userName=JSON.parse(window.localStorage.user).name;
+        let userName=JSON.parse(window.sessionStorage.user).name;
         console.log("Attempting to logout ",userName);
         logout(userName)
             .then((response)=>{
@@ -25,7 +25,8 @@ export class Logout extends Component {
                             console.log("Log out error response",response);
                             // replacing: alert("Failed to log out (error: "+response.data.error+").");
                         }else{ // success
-                            window.localStorage.removeItem("user");
+                            window.sessionStorage.removeItem("user");
+                            document.title=document.title.substr(0,document.title.indexOf(' - ')); // cut off name
                             this.setState({loggedOut:true}); // log me out, Scotty!
                         }
                     })

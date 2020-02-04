@@ -48,7 +48,8 @@ export class Login extends Component{
             signup(this.state.name,this.state.password.trim())
                 .then((response)=>{
                     if(response.status>=200&&response.status<300){
-                        window.localStorage.user=JSON.stringify(response.data); // OOPS store as String bro'
+                        window.sessionStorage.user=JSON.stringify(response.data); // OOPS store as String bro'
+                        document.title+=' - '+window.sessionStorage.user.name;
                         try{this.setState({loggedin:true});}catch(err){}
                         alert("Sign up successful!");
                         // replacing: alert(response.data.user.name+" successfully registered.");
@@ -71,8 +72,9 @@ export class Login extends Component{
                     debugger
                     if(response.status>=200&&response.status<300){
                         // response.data should contain the _id and name of the logged in user!!!
-                        window.localStorage.user=JSON.stringify(response.data);
-                        console.log("User recognized. See localStorage.user!");
+                        window.sessionStorage.user=JSON.stringify(response.data);
+                        console.log("User recognized. See sessionStorage.user!");
+                        document.title+=' - '+window.sessionStorage.user.name;
                         try{this.setState({loggedin:true});}catch(err){}
                         alert("Log in successful!");
                         // replacing: alert(response.data.user.name+" successfully logged in!");

@@ -21,7 +21,7 @@ function ChatHomePage() {
     if (!isValid) {
       return;
     }
-    localStorage.setItem("chatData", JSON.stringify(evt));
+    sessionStorage.setItem("chatData", JSON.stringify(evt));
     await joinRoom(evt.chatRoomName);
     setRedirect(true);
   };
@@ -34,7 +34,7 @@ function ChatHomePage() {
       <Formik
         validationSchema={schema}
         onSubmit={handleSubmit}
-        initialValues={JSON.parse(localStorage.getItem("chatData") || "{}")}
+        initialValues={JSON.parse(sessionStorage.getItem("chatData") || "{}")}
       >
         {({
           handleSubmit,

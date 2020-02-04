@@ -14,7 +14,7 @@ const SOCKET_IO_URL = "http://localhost:5000"; // MDH@02FEB2020: running our Cha
 
 const socket = io(SOCKET_IO_URL);
 const getChatData = () => {
-  return JSON.parse(localStorage.getItem("chatData"));
+  return JSON.parse(sessionStorage.getItem("chatData"));
 };
 
 const schema = yup.object({

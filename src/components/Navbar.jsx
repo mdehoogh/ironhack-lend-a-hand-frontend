@@ -7,7 +7,7 @@ export default class Navbar extends Component{
         // kinda funny if the following works!!!
         return(
             <div class='navbar'>
-                {window.localStorage.user
+                {window.sessionStorage.user
                     ?
                         <ul>
                             <li><a href='/leave'>Leave</a></li>

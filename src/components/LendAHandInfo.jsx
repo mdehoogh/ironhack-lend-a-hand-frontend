@@ -5,7 +5,7 @@ import './LendAHandInfo.css';
 
 export class LendAHandInfo extends Component{
     render(){
-        return(<div className='lend-a-hand-info'>{window.localStorage.info}</div>);
+        return(<div className='lend-a-hand-info'>{window.sessionStorage.info}</div>);
     }
 }
 
